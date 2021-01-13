@@ -35,5 +35,23 @@ countdown(10, done);
 let lunchTime = true;
 const orderMeSomeFood = () => {
     return new Promise((resolve, reject) => {
-        //stuff
-    }
+        if(lunchTime === true) {
+            let favorites = {
+                lunch: 'burgers',
+                drink: 'beer'
+            };
+            resolve(favorites);
+        } else {
+            let err = new Error("It's not lunchtime yet, bro");
+            reject(err);
+        }
+    });
+};
+orderMeSomeFood()
+.then(success => console.log(success))
+.catch(fail => console.log(fail));
+
+lunchTime = false;
+orderMeSomeFood()
+.then(success => console.log(success))
+.catch(fail => console.log(fail));
